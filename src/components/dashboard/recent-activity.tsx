@@ -21,42 +21,7 @@ interface ActivityItem {
   isAI?: boolean;
 }
 
-const activities: ActivityItem[] = [
-  {
-    id: "1",
-    type: "help_given",
-    title: "Helped Sarah with Binary Search",
-    description: "Explained the algorithm step-by-step with visual examples",
-    timestamp: "2 hours ago",
-    karma: 25,
-    participants: ["Sarah Kim"]
-  },
-  {
-    id: "2", 
-    type: "ai_interaction",
-    title: "AI-Enhanced Discussion",
-    description: "Circle AI helped moderate your explanation of recursion",
-    timestamp: "5 hours ago",
-    isAI: true
-  },
-  {
-    id: "3",
-    type: "question_answered",
-    title: "Answered: Array vs LinkedList",
-    description: "Provided detailed comparison with time complexity analysis",
-    timestamp: "1 day ago",
-    karma: 15,
-    participants: ["Marcus Johnson"]
-  },
-  {
-    id: "4",
-    type: "question_asked",
-    title: "Asked about Dynamic Programming",
-    description: "Got help from Alex on understanding memoization patterns",
-    timestamp: "2 days ago",
-    participants: ["Alex Chen"]
-  }
-];
+const activities: ActivityItem[] = [];
 
 const getActivityIcon = (type: ActivityItem['type'], isAI?: boolean) => {
   if (isAI) return <Bot className="h-4 w-4" />;
@@ -102,53 +67,60 @@ export function RecentActivity() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {activities.map((activity) => (
-            <div key={activity.id} className="flex gap-3 pb-3 last:pb-0 last:border-b-0 border-b border-border/50">
-              <div className={`mt-1 ${getActivityColor(activity.type, activity.isAI)}`}>
-                {getActivityIcon(activity.type, activity.isAI)}
-              </div>
-              
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <p className="text-sm font-medium">{activity.title}</p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {activity.description}
-                    </p>
-                  </div>
-                  {activity.karma && (
-                    <Badge variant="secondary" className="bg-learning-karma/10 text-learning-karma border-learning-karma/20 text-xs">
-                      +{activity.karma}
-                    </Badge>
-                  )}
+          {activities.length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground">
+              <p className="text-sm">No recent activity.</p>
+              <p className="text-xs mt-1">Start interacting with your circle to see activity here!</p>
+            </div>
+          ) : (
+            activities.map((activity) => (
+              <div key={activity.id} className="flex gap-3 pb-3 last:pb-0 last:border-b-0 border-b border-border/50">
+                <div className={`mt-1 ${getActivityColor(activity.type, activity.isAI)}`}>
+                  {getActivityIcon(activity.type, activity.isAI)}
                 </div>
                 
-                <div className="flex items-center gap-2 mt-2">
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Clock className="h-3 w-3" />
-                    {activity.timestamp}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-sm font-medium">{activity.title}</p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {activity.description}
+                      </p>
+                    </div>
+                    {activity.karma && (
+                      <Badge variant="secondary" className="bg-learning-karma/10 text-learning-karma border-learning-karma/20 text-xs">
+                        +{activity.karma}
+                      </Badge>
+                    )}
                   </div>
                   
-                  {activity.participants && (
-                    <div className="flex items-center gap-1">
-                      {activity.participants.slice(0, 2).map((participant, index) => (
-                        <Avatar key={index} className="h-5 w-5">
-                          <AvatarFallback className="bg-gradient-primary text-primary-foreground text-xs">
-                            {participant.split(' ').map(n => n[0]).join('')}
-                          </AvatarFallback>
-                        </Avatar>
-                      ))}
-                      {activity.participants.length > 2 && (
-                        <span className="text-xs text-muted-foreground">
-                          +{activity.participants.length - 2} more
-                        </span>
-                      )}
+                  <div className="flex items-center gap-2 mt-2">
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <Clock className="h-3 w-3" />
+                      {activity.timestamp}
                     </div>
-                  )}
+                    
+                    {activity.participants && (
+                      <div className="flex items-center gap-1">
+                        {activity.participants.slice(0, 2).map((participant, index) => (
+                          <Avatar key={index} className="h-5 w-5">
+                            <AvatarFallback className="bg-gradient-primary text-primary-foreground text-xs">
+                              {participant.split(' ').map(n => n[0]).join('')}
+                            </AvatarFallback>
+                          </Avatar>
+                        ))}
+                        {activity.participants.length > 2 && (
+                          <span className="text-xs text-muted-foreground">
+                            +{activity.participants.length - 2} more
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </CardContent>
     </Card>

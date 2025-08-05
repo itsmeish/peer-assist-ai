@@ -20,38 +20,12 @@ interface Achievement {
   color: string;
 }
 
-const achievements: Achievement[] = [
-  {
-    id: "debug-doctor",
-    name: "Debug Doctor",
-    icon: <Target className="h-4 w-4" />,
-    description: "Helped 10 peers debug their code",
-    earned: true,
-    color: "bg-learning-progress"
-  },
-  {
-    id: "clarity-coach", 
-    name: "Clarity Coach",
-    icon: <Star className="h-4 w-4" />,
-    description: "Explained complex concepts clearly 5 times",
-    earned: false,
-    progress: 80,
-    color: "bg-learning-karma"
-  },
-  {
-    id: "streak-keeper",
-    name: "Streak Keeper", 
-    icon: <Zap className="h-4 w-4" />,
-    description: "Maintained 7-day helping streak",
-    earned: true,
-    color: "bg-learning-streak"
-  }
-];
+const achievements: Achievement[] = [];
 
 export function KarmaStats() {
-  const totalKarma = 1850;
-  const weeklyGain = 245;
-  const nextLevelKarma = 2000;
+  const totalKarma = 0;
+  const weeklyGain = 0;
+  const nextLevelKarma = 100;
   const currentLevelProgress = (totalKarma / nextLevelKarma) * 100;
 
   return (
@@ -87,38 +61,45 @@ export function KarmaStats() {
         {/* Achievements */}
         <div className="space-y-3">
           <h4 className="text-sm font-medium text-muted-foreground">Recent Achievements</h4>
-          {achievements.map((achievement) => (
-            <div key={achievement.id} className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
-              <div className={`p-1.5 rounded-md ${achievement.color} text-white ${achievement.earned ? '' : 'opacity-50'}`}>
-                {achievement.icon}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium">{achievement.name}</p>
-                  {achievement.earned && (
-                    <Award className="h-4 w-4 text-learning-karma" />
+          {achievements.length === 0 ? (
+            <div className="text-center py-4 text-muted-foreground">
+              <p className="text-sm">No achievements yet.</p>
+              <p className="text-xs mt-1">Start helping peers to earn your first badge!</p>
+            </div>
+          ) : (
+            achievements.map((achievement) => (
+              <div key={achievement.id} className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                <div className={`p-1.5 rounded-md ${achievement.color} text-white ${achievement.earned ? '' : 'opacity-50'}`}>
+                  {achievement.icon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-medium">{achievement.name}</p>
+                    {achievement.earned && (
+                      <Award className="h-4 w-4 text-learning-karma" />
+                    )}
+                  </div>
+                  <p className="text-xs text-muted-foreground">{achievement.description}</p>
+                  {!achievement.earned && achievement.progress && (
+                    <div className="mt-1">
+                      <Progress value={achievement.progress} className="h-1" />
+                      <p className="text-xs text-muted-foreground mt-1">{achievement.progress}% complete</p>
+                    </div>
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground">{achievement.description}</p>
-                {!achievement.earned && achievement.progress && (
-                  <div className="mt-1">
-                    <Progress value={achievement.progress} className="h-1" />
-                    <p className="text-xs text-muted-foreground mt-1">{achievement.progress}% complete</p>
-                  </div>
-                )}
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 gap-3 pt-2 border-t">
           <div className="text-center p-2 rounded-lg bg-learning-progress/10">
-            <p className="text-lg font-bold text-learning-progress">23</p>
+            <p className="text-lg font-bold text-learning-progress">0</p>
             <p className="text-xs text-muted-foreground">Peers Helped</p>
           </div>
           <div className="text-center p-2 rounded-lg bg-learning-karma/10">
-            <p className="text-lg font-bold text-learning-karma">4.9</p>
+            <p className="text-lg font-bold text-learning-karma">0.0</p>
             <p className="text-xs text-muted-foreground">Avg Rating</p>
           </div>
         </div>
