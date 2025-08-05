@@ -7,34 +7,62 @@ All colors MUST be HSL.
 */
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+:root {
+    /* Core learning theme */
+    --background: 220 15% 97%;
+    --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Learning-focused primary colors */
+    --primary: 235 65% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 235 70% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Community secondary colors */
+    --secondary: 210 15% 95%;
+    --secondary-foreground: 215 25% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 15% 93%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Growth accent colors */
+    --accent: 145 65% 50%;
+    --accent-foreground: 0 0% 100%;
 
+    /* Destructive remains the same */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 15% 88%;
+    --input: 215 15% 92%;
+    --ring: 235 65% 55%;
+
+    /* Learning-specific colors */
+    --learning-progress: 145 65% 50%;
+    --learning-streak: 35 85% 55%;
+    --learning-karma: 270 65% 60%;
+    --circle-online: 125 60% 45%;
+    --ai-assistant: 190 70% 55%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(235 65% 55%), hsl(235 70% 65%));
+    --gradient-learning: linear-gradient(135deg, hsl(145 65% 50%), hsl(125 60% 45%));
+    --gradient-karma: linear-gradient(135deg, hsl(270 65% 60%), hsl(280 70% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(235 65% 55%) 0%, hsl(270 65% 60%) 50%, hsl(145 65% 50%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(215 25% 15% / 0.08);
+    --shadow-medium: 0 4px 16px -4px hsl(215 25% 15% / 0.12);
+    --shadow-glow: 0 8px 32px -8px hsl(235 65% 55% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -55,34 +83,50 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+.dark {
+    --background: 215 25% 8%;
+    --foreground: 210 15% 92%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 25% 10%;
+    --card-foreground: 210 15% 92%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 25% 10%;
+    --popover-foreground: 210 15% 92%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 235 70% 65%;
+    --primary-foreground: 215 25% 8%;
+    --primary-glow: 235 75% 70%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 215 25% 15%;
+    --secondary-foreground: 210 15% 85%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 25% 12%;
+    --muted-foreground: 215 15% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 145 70% 55%;
+    --accent-foreground: 215 25% 8%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 210 15% 92%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 215 25% 18%;
+    --input: 215 25% 15%;
+    --ring: 235 70% 65%;
+
+    --learning-progress: 145 70% 55%;
+    --learning-streak: 35 90% 60%;
+    --learning-karma: 270 70% 65%;
+    --circle-online: 125 65% 50%;
+    --ai-assistant: 190 75% 60%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(235 70% 65%), hsl(235 75% 70%));
+    --gradient-learning: linear-gradient(135deg, hsl(145 70% 55%), hsl(125 65% 50%));
+    --gradient-karma: linear-gradient(135deg, hsl(270 70% 65%), hsl(280 75% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(235 70% 65%) 0%, hsl(270 70% 65%) 50%, hsl(145 70% 55%) 100%);
+
+    --shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.4);
+    --shadow-medium: 0 4px 16px -4px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 8px 32px -8px hsl(235 70% 65% / 0.4);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
